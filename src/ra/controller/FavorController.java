@@ -34,6 +34,9 @@ public class FavorController implements IGenericController<FavorItem,Integer> {
     public int getNewId() {
         return favorService.getNewId();
     }
+    public void resetId(List<FavorItem> favorItemList) {
+        favorService.resetId(favorItemList);
+    }
 
     public void clearAll() {
         favorService.clearAll();

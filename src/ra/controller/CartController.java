@@ -32,6 +32,7 @@ public class CartController implements IGenericController<CartItem,Integer> {
     public int getNewId() {
         return cartService.getNewId();
     }
+    public void resetId(List<CartItem> cartItems) {cartService.resetId(cartItems);}
 
     public void clearAll() {
         cartService.clearAll();

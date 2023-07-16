@@ -244,15 +244,14 @@ public class Main {
                 case 3:
                     CartManager.addItemToCartV2();
                     break;
-
                 case 4:
                     new CartManager();
                     break;
                 case 5:
                     FavorManager.addItemToFavorList();
+                    break;
                 case 6:
                     new FavorManager();
-
                     break;
                 case 7:
                     new OrderManagerV2();
@@ -281,6 +280,7 @@ public class Main {
             System.out.println(Color.P+"║"+Color.RS+"        2. Category Manager          "+Color.P+"║"+Color.RS);
             System.out.println(Color.P+"║"+Color.RS+"        3. Food Manager              "+Color.P+"║"+Color.RS);
             System.out.println(Color.P+"║"+Color.RS+"        4. Order Manager             "+Color.P+"║"+Color.RS);
+            System.out.println(Color.P+"║"+Color.RS+"        5. Revenue                   "+Color.P+"║"+Color.RS);
             System.out.println(Color.P+"║"+Color.RS+"        0. Log out                   "+Color.P+"║"+Color.RS);
             System.out.println(Color.P+"╙"+Color.P+"─────────────────────────────────────"+Color.P+"╜"+Color.RS);
             System.out.print("Enter choice: ");

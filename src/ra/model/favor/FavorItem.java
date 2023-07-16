@@ -84,12 +84,25 @@ public class FavorItem implements Serializable {
     @Override
     public String toString() {
         if(favorFood.getFoodCategory().getCategoryName().equals("Pizza")){
-            return "ID: " + favorId + " | " +favorFood.getFoodCategory().getCategoryName() +": "+ favorFood.getFoodName() + "\n"+
-                    "Crust: "+ pizzaCrust + " | Size: " +pizzaSize + " | Extras: "+pizzaExtrasCheese+ "\n"+
-                    "Price: " + Validation.formatPrice(pizzaPrice) + " | Quantity: " + itemQuantity;
+            String pizzaInfo ="Crust: " + pizzaCrust + " ─ Size: " + pizzaSize + " ─ Extras: " + pizzaExtrasCheese;
+            int messageLength = pizzaInfo.length();
+            int availableWidth = 67;
+            int remainingWidth = availableWidth - messageLength;
+            int leftWidth = remainingWidth / 2;
+            int rightWidth = remainingWidth - leftWidth;
+            String leftSeparator = "";
+            String rightSeparator = "";
+            for (int i = 0; i < leftWidth; i++) {
+                leftSeparator += " ";
+            }
+            for (int i = 0; i < rightWidth; i++) {
+                rightSeparator += " ";
+            }
+            String infoStr = "║" + leftSeparator + pizzaInfo + rightSeparator + "║";
+            return String.format("║ %-3s │ %-10s │ %-25s │ %-8s│ %-8s ║", favorId, favorFood.getFoodCategory().getCategoryName(), favorFood.getFoodName(), itemQuantity, Validation.formatPrice(favorFood.getFoodPrice()))+"\n"+infoStr;
         } else {
-            return "ID: " + favorId+ " | " + favorFood.getFoodCategory().getCategoryName()+": " + favorFood.getFoodName() + "\n"+
-                    "Price: " + Validation.formatPrice(favorFood.getFoodPrice()) + " | Quantity: " + itemQuantity;
+            return String.format("║ %-3s │ %-10s │ %-25s │ %-8s│ %-8s ║", favorId,favorFood.getFoodCategory().getCategoryName(), favorFood.getFoodName(), itemQuantity, Validation.formatPrice(favorFood.getFoodPrice()));
         }
     }
+
 }

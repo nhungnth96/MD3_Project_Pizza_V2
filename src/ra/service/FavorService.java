@@ -26,12 +26,15 @@ public class FavorService implements IGenericService<FavorItem,Integer> {
         List<FavorItem> favor =  userLogin.getFavor();
         if (findById(item.getFavorId()) == null) {
             FavorItem itemFood = findExistedItem(item.getFavorFood().getFoodId());
-            if(itemFood!=null){
+            if(itemFood!=null&&item.getPizzaCrust().equals(itemFood.getPizzaCrust())&&item.getPizzaSize().equals(itemFood.getPizzaSize())&&item.getPizzaExtrasCheese().equals(itemFood.getPizzaExtrasCheese())){
                 System.err.println(Alert.EXISTED_ERROR);
             }
             else {
                 favor.add(item);
             }
+        } else {
+            favor.set(favor.indexOf(findById(item.getFavorId())),item);
+
         }
         userService.save(userLogin);
     }
@@ -54,6 +57,14 @@ public class FavorService implements IGenericService<FavorItem,Integer> {
             }
         }
         return maxId + 1;
+    }
+
+    public void resetId(List<FavorItem> favorItems) {
+        int newId = 1;
+        for (FavorItem item : favorItems) {
+            item.setFavorId(newId);
+            newId++;
+        }
     }
     @Override
     public FavorItem findById(Integer id) {

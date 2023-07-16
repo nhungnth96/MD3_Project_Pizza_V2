@@ -1,6 +1,7 @@
 package ra.service;
 
 import ra.model.cart.CartItem;
+import ra.model.favor.FavorItem;
 import ra.model.user.User;
 
 import java.util.ArrayList;
@@ -24,11 +25,7 @@ public class CartService implements IGenericService<CartItem, Integer> {
     public void save(CartItem item) {
          List<CartItem> cart =  userLogin.getCart();
         if (findById(item.getItemId()) == null) {
-            // add
-            // kiểm tra sp tồn tại trong cart
             CartItem itemFood = findExistedItem(item.getItemFood().getFoodId());
-
-            // đã có trong cart
             if(itemFood!=null){
                 if(itemFood.getItemFood().getFoodCategory().getCategoryName().equals("Pizza")){
                     if(itemFood.getPizzaCrust().equals(item.getPizzaCrust())&&
@@ -90,6 +87,13 @@ public class CartService implements IGenericService<CartItem, Integer> {
             }
         }
         return null;
+    }
+    public void resetId(List<CartItem> cartItems) {
+        int newId = 1;
+        for (CartItem item : cartItems) {
+            item.setItemId(newId);
+            newId++;
+        }
     }
 
 
